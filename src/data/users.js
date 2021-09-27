@@ -21,8 +21,12 @@ const users = [
   },
   {
     name: 'Agata Janowska',
-    // attendance: '60%',
-    average: '4.8',
+    attendance: '30%',
+    average: '2.8',
+  },
+  {
+    name: 'Tomasz Jeleń',
+    average: '2.0',
   },
 ];
 
