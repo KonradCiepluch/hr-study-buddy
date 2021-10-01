@@ -1,48 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import usersData from 'data/users';
-import { Wrapper, StyledList } from './UsersList.styles';
+import PropTypes from 'prop-types';
+import { StyledList } from './UsersList.styles';
+import { Title } from 'components/atoms/Title/Title.styles';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
+import UserShape from 'components/types';
 
-const mockApi = () =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (usersData) {
-        resolve([...usersData]);
-      } else {
-        reject({ message: 'Error' });
-      }
-    }, 2000);
-  });
-
-const UsersList = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    mockApi()
-      .then((data) => {
-        setIsLoading(false);
-        setUsers(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  const deleteUser = (name) => {
-    const filteredUsers = users.filter((user) => user.name !== name);
-    setUsers(filteredUsers);
-  };
-
+const UsersList = ({ users, isLoading, deleteUser }) => {
   return (
-    <Wrapper>
-      <h1>{isLoading ? 'Loading...' : 'Students list:'} </h1>
+    <>
+      <Title>{isLoading ? 'Loading...' : 'Students list:'} </Title>
       <StyledList>
-        {users.map((user, i) => (
+        {users.map((user) => (
           <UsersListItem key={user.name} user={user} deleteUser={deleteUser} />
         ))}
       </StyledList>
-    </Wrapper>
+    </>
   );
+};
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
+  isLoading: PropTypes.bool.isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 
 export default UsersList;
