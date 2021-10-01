@@ -24,7 +24,8 @@ export const LinksWrapper = styled.div`
   padding: 47px 24px 0 0;
 `;
 
-export const StyledLink = styled(NavLink)`
+const activeClassName = 'active-link';
+export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   position: relative;
   font-size: 12px;
   font-weight: 700;
@@ -45,7 +46,10 @@ export const StyledLink = styled(NavLink)`
     opacity: 0;
     transition: opacity 0.5s;
   }
-  &.active::after {
-    opacity: 1;
+
+  &.${activeClassName} {
+    &::after {
+      opacity: 1;
+    }
   }
 `;
