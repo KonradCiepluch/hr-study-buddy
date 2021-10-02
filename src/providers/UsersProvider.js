@@ -16,6 +16,7 @@ export const UsersContext = createContext({
   users: [],
   handleAddUser: () => {},
   deleteUser: () => {},
+  isLoading: false,
 });
 
 const UsersProvider = ({ children }) => {
