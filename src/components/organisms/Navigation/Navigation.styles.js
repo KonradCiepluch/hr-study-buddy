@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
+  grid-column: 1 /2;
+  grid-row: 1 / 3;
   width: 150px;
   border-right: 1px solid ${({ theme }) => theme.colors.mediumGrey};
 `;
@@ -11,9 +13,9 @@ export const NavTitle = styled.h1`
   font-size: 15px;
   font-weight: 700;
   text-align: right;
-  background-color: ${({ theme }) => theme.colors.lightPurple};
+  background-color: ${({ theme }) => theme.colors.darkGrey};
   color: ${({ theme }) => theme.colors.white};
-  margin-top: 19px;
+  margin-top: 30px;
   line-height: 113%;
 `;
 
@@ -29,7 +31,7 @@ export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   position: relative;
   font-size: 12px;
   font-weight: 700;
-  color: ${({ theme }) => theme.colors.lightPurple};
+  color: ${({ theme }) => theme.colors.darkGrey};
   text-decoration: none;
   line-height: 20px;
   margin-bottom: 13.6px;
