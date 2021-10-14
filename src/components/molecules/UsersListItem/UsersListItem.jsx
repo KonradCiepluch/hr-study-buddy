@@ -6,7 +6,7 @@ import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import { UsersContext } from 'providers/UsersProvider';
 import UserShape from 'components/types';
 
-const UsersListItem = ({ user: { name, average, attendance = '0%' } }) => {
+const UsersListItem = ({ student: { name, average, attendance = '0%' } }) => {
   const { deleteUser } = useContext(UsersContext);
 
   return (
@@ -22,7 +22,7 @@ const UsersListItem = ({ user: { name, average, attendance = '0%' } }) => {
 };
 
 UsersListItem.propTypes = {
-  user: PropTypes.shape(UserShape),
+  student: PropTypes.shape(UserShape),
 };
 
 export default UsersListItem;

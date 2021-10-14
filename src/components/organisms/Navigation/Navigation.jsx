@@ -6,7 +6,7 @@ const Navigation = () => {
     <Nav>
       <NavTitle>Study Buddy</NavTitle>
       <LinksWrapper>
-        <StyledLink to="/" exact>
+        <StyledLink to="/group" exact>
           Dashboard
         </StyledLink>
         <StyledLink to="/add-user">Add user</StyledLink>
