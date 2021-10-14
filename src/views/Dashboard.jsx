@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link, Redirect } from 'react-router-dom';
 import StudentsList from 'components/organisms/StudentsList/StudentsList';
@@ -8,8 +8,16 @@ import { ReactComponent as ArrowIcon } from 'assets/icons/arrow.svg';
 import useStudents from 'hooks/useStudents';
 
 const Dashboard = () => {
+  const [groups, setGroups] = useState([]);
   const { id } = useParams();
-  const { groups } = useStudents();
+  const { getGroups } = useStudents();
+
+  useEffect(() => {
+    (async () => {
+      const groups = await getGroups();
+      setGroups(groups);
+    })();
+  }, [getGroups]);
 
   if (!id && groups.length) return <Redirect to={`group/${groups[0]}`} />;
 

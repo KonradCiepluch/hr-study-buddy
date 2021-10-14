@@ -11,7 +11,7 @@ export const SearchBarWrapper = styled.div`
   padding: 0 40px;
 
   ${Input} {
-    font-size: ${({ theme }) => theme.fontSize.xl};
+    font-size: ${({ theme }) => theme.fontSize.l};
     width: 100%;
     max-width: 350px;
     color: ${({ theme }) => theme.colors.darkGrey};
@@ -36,6 +36,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const MatchingStudents = styled.ul`
+  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   position: absolute;
   top: 100%;
   width: 100%;
@@ -52,26 +53,27 @@ export const MatchingStudents = styled.ul`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
 
-  li {
-    position: relative;
-    color: ${({ theme }) => theme.colors.darkGrey};
-    font-size: ${({ theme }) => theme.fontSize.l};
-    font-weight: 700;
-    padding: 11px 28px 16px;
+export const MatchingStudent = styled.li`
+  position: relative;
+  color: ${({ theme }) => theme.colors.darkGrey};
+  font-size: ${({ theme }) => theme.fontSize.l};
+  font-weight: 700;
+  padding: 11px 28px 16px;
+  background-color: ${({ theme, isHighlighted }) => (isHighlighted ? theme.colors.lightPurple : 'transparent')};
 
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.lightPurple};
-    }
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.lightPurple};
+  }
 
-    &:not(:last-child)::after {
-      position: absolute;
-      content: '';
-      bottom: 0;
-      left: 29px;
-      width: calc(100% - 45px);
-      height: 1px;
-      background-color: ${({ theme }) => theme.colors.mediumGrey};
-    }
+  &:not(:last-child)::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 29px;
+    width: calc(100% - 45px);
+    height: 1px;
+    background-color: ${({ theme }) => theme.colors.mediumGrey};
   }
 `;
