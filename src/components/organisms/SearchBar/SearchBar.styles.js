@@ -14,6 +14,7 @@ export const SearchBarWrapper = styled.div`
     font-size: ${({ theme }) => theme.fontSize.xl};
     width: 100%;
     max-width: 350px;
+    color: ${({ theme }) => theme.colors.darkGrey};
     border: 2px solid ${({ theme }) => theme.colors.lightPurple};
   }
 `;
@@ -25,5 +26,52 @@ export const StatusInfo = styled.div`
 
   p {
     margin: 5px;
+  }
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 350px;
+`;
+
+export const MatchingStudents = styled.ul`
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  max-height: 200px;
+  list-style: none;
+  padding: 31px 0;
+  border-radius: 25px;
+  box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
+  background-color: #fff;
+  z-index: 1;
+  overflow-y: scroll;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  li {
+    position: relative;
+    color: ${({ theme }) => theme.colors.darkGrey};
+    font-size: ${({ theme }) => theme.fontSize.l};
+    font-weight: 700;
+    padding: 11px 28px 16px;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.lightPurple};
+    }
+
+    &:not(:last-child)::after {
+      position: absolute;
+      content: '';
+      bottom: 0;
+      left: 29px;
+      width: calc(100% - 45px);
+      height: 1px;
+      background-color: ${({ theme }) => theme.colors.mediumGrey};
+    }
   }
 `;
