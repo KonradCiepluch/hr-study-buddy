@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const Nav = styled.nav`
   grid-column: 1 /2;
   grid-row: 1 / 3;
-  width: 150px;
+  width: ${({ isLong }) => (isLong ? '300px' : '150px')};
   border-right: 1px solid ${({ theme }) => theme.colors.mediumGrey};
 `;
 

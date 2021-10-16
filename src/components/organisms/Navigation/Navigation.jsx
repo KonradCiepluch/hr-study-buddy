@@ -1,9 +1,9 @@
 import React from 'react';
 import { Nav, NavTitle, LinksWrapper, StyledLink } from './Navigation.styles';
 
-const Navigation = () => {
+const Navigation = ({ isLong }) => {
   return (
-    <Nav>
+    <Nav isLong={isLong}>
       <NavTitle>Study Buddy</NavTitle>
       <LinksWrapper>
         <StyledLink to="/group" exact>

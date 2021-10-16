@@ -14,7 +14,8 @@ const Grade = styled.div`
   background-color: ${({ grade, theme }) => {
     if (grade >= 4) return theme.colors.success;
     if (grade >= 3) return theme.colors.warning;
-    return theme.colors.error;
+    if (grade >= 2) return theme.colors.error;
+    return theme.colors.grey;
   }};
 `;
 
