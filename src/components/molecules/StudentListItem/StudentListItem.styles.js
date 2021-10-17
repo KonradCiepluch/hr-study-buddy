@@ -4,6 +4,7 @@ const Wrapper = styled.li`
   position: relative;
   display: flex;
   padding: 33px 0 24px;
+  cursor: pointer;
 
   &:not(:last-child)::after {
     position: absolute;

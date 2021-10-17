@@ -6,11 +6,11 @@ import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
 import { UsersContext } from 'providers/UsersProvider';
 import UserShape from 'components/types';
 
-const StudentListItem = ({ student: { name, average, attendance = '0%' } }) => {
+const StudentListItem = ({ student: { name, average, attendance = '0%' }, ...props }) => {
   const { deleteUser } = useContext(UsersContext);
 
   return (
-    <Wrapper key={name}>
+    <Wrapper {...props}>
       <Grade grade={average}>{average}</Grade>
       <div>
         <p>{name}</p>
