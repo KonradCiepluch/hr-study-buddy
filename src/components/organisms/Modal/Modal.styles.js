@@ -1,18 +1,19 @@
 import styled, { keyframes } from 'styled-components';
+import ReactModal from 'react-modal';
 
-const appear = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.4;
-  }
-`;
+// const appear = keyframes`
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 0.4;
+//   }
+// `;
 
 const scaleUp = keyframes`
   from {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
+    transform: translate(-50%, -50%) scale(0.95);
   }
   to {
     opacity: 1;
@@ -20,7 +21,7 @@ const scaleUp = keyframes`
   }
 `;
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled(ReactModal)`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -38,9 +39,13 @@ export const ModalWrapper = styled.div`
   padding: 50px;
   opacity: 0;
   animation: ${scaleUp} 0.4s both;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
-export const ModalLayer = styled.div`
+/* export const ModalLayer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -50,3 +55,4 @@ export const ModalLayer = styled.div`
   opacity: 0;
   animation: ${appear} 0.4s both;
 `;
+ */

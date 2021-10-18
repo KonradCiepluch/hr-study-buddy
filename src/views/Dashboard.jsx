@@ -30,7 +30,7 @@ const Dashboard = () => {
     handleOpenModal();
   };
 
-  if (!id && groups.length) return <Redirect to={`group/${groups[0]}`} />;
+  if (!id && groups.length) return <Redirect to={`group/${groups[0].name}`} />;
 
   return (
     <>
@@ -40,9 +40,9 @@ const Dashboard = () => {
           change group
           <ArrowIcon />
           <Navigation>
-            {groups.map((group) => (
-              <Link key={group} to={`/group/${group}`}>
-                {group}
+            {groups.map(({ name }) => (
+              <Link key={name} to={`/group/${name}`}>
+                {name}
               </Link>
             ))}
           </Navigation>
@@ -50,11 +50,9 @@ const Dashboard = () => {
       </NavWrapper>
       <ViewWrapper>
         <StudentsList handleOpenStudentDetails={handleOpenStudentDetails} />
-        {isOpen ? (
-          <Modal handleClose={handleCloseModal}>
-            <StudentDetails student={currentStudent} />
-          </Modal>
-        ) : null}
+        <Modal handleClose={handleCloseModal} isOpen={isOpen}>
+          <StudentDetails student={currentStudent} />
+        </Modal>
       </ViewWrapper>
     </>
   );
