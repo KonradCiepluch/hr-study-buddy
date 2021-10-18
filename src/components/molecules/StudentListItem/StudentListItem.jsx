@@ -14,7 +14,7 @@ const StudentListItem = ({ student: { name, average, attendance = '0%' }, ...pro
       <Grade grade={average}>{average}</Grade>
       <div>
         <p>{name}</p>
-        <p>attendance {attendance}</p>
+        <p>attendance {attendance}%</p>
       </div>
       <DeleteButton onClick={() => deleteUser(name)} />
     </Wrapper>
