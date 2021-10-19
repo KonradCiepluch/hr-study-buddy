@@ -35,6 +35,7 @@ export const StyledLink = styled(NavLink).attrs({ activeClassName })`
   text-decoration: none;
   line-height: 20px;
   margin-bottom: 13.6px;
+  cursor: pointer;
 
   &::after {
     position: absolute;

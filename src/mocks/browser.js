@@ -10,16 +10,15 @@ const createRecords = () => {
     db.student.create();
     db.event.create();
   }
+  groups.forEach((group) => db.group.create({ name: group }));
+
+  db.teacher.create();
 };
 
-const createGroups = () => groups.forEach((group) => db.group.create({ name: group }));
-
 createRecords();
-createGroups();
 
 window.mocks = {
   createRecords,
-  createGroups,
   getStudents: () => db.student.getAll(),
   getEvents: () => db.event.getAll(),
   getGroups: () => db.group.getAll(),
