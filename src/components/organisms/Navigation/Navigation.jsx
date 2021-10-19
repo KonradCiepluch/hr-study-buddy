@@ -1,16 +1,16 @@
 import React from 'react';
 import { Nav, NavTitle, LinksWrapper, StyledLink } from './Navigation.styles';
+import { useAuth } from 'hooks/useAuth';
 
 const Navigation = ({ isLong }) => {
+  const { signOut } = useAuth();
   return (
     <Nav isLong={isLong}>
       <NavTitle>Study Buddy</NavTitle>
       <LinksWrapper>
-        <StyledLink to="/group" exact>
-          Dashboard
-        </StyledLink>
+        <StyledLink to="/group">Dashboard</StyledLink>
         <StyledLink to="/add-user">Add user</StyledLink>
-        <StyledLink as="a" onClick={() => localStorage.removeItem('token')}>
+        <StyledLink as="a" onClick={signOut}>
           Logout
         </StyledLink>
       </LinksWrapper>
