@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import useError from './useError';
 
 const AuthContext = React.createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [error, setError] = React.useState(null);
+  const { dispatchError } = useError();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,11 +30,11 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data: user } = await axios.post('/login', { ...data });
       setUser(user);
-      setError(null);
+      dispatchError('');
       localStorage.setItem('token', user.token);
     } catch (e) {
       console.log(e);
-      setError('Please provide valid user data');
+      dispatchError('Please provide valid user data');
     }
   };
 
@@ -42,13 +43,13 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  return <AuthContext.Provider value={{ user, error, signIn, signOut }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, signIn, signOut }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
   const auth = useContext(AuthContext);
 
-  if (!auth) throw Error('useAuth must be used inside AuthProvider');
+  if (!Object.keys(auth).length) throw Error('useAuth must be used inside AuthProvider');
 
   return auth;
 };

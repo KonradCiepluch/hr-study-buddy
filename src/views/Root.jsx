@@ -8,6 +8,8 @@ import FormField from 'components/molecules/FormField/FormField';
 import Button from 'components/atoms/Button/Button';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'hooks/useAuth';
+import ErrorMessage from 'components/molecules/ErrorMessage/ErrorMessage';
+import useError from 'hooks/useError';
 
 const AuthenticatedApp = () => (
   <MainTemplate>
@@ -36,24 +38,31 @@ const UnauthenticatedApp = () => {
   } = useForm();
 
   return (
-    <form
-      style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
-      onSubmit={handleSubmit(signIn)}
-    >
-      <FormField label="login" name="login" id="login" {...register('login', { required: true })} />
-      {errors.login && <span style={{ marginTop: '5px', fontSize: '14px', color: '#737C8E', fontWeight: '700' }}>Login is required</span>}
-      <FormField label="password" name="password" id="password" type="password" {...register('password', { required: true })} />
-      {errors.password && <span style={{ marginTop: '5px', fontSize: '14px', color: '#737C8E', fontWeight: '700' }}>Login is required</span>}
-      <Button type="submit">Sign in</Button>
-      {error && <span style={{ marginTop: '5px', fontSize: '14px', color: '#737C8E', fontWeight: '700' }}>{error}</span>}
-    </form>
+    <>
+      <form
+        style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}
+        onSubmit={handleSubmit(signIn)}
+      >
+        <FormField label="login" name="login" id="login" {...register('login', { required: true })} />
+        {errors.login && <span style={{ marginTop: '5px', fontSize: '14px', color: '#737C8E', fontWeight: '700' }}>Login is required</span>}
+        <FormField label="password" name="password" id="password" type="password" {...register('password', { required: true })} />
+        {errors.password && <span style={{ marginTop: '5px', fontSize: '14px', color: '#737C8E', fontWeight: '700' }}>Login is required</span>}
+        <Button type="submit">Sign in</Button>
+        {error && <span style={{ marginTop: '5px', fontSize: '14px', color: '#737C8E', fontWeight: '700' }}>{error}</span>}
+      </form>
+    </>
   );
 };
 
 const Root = () => {
   const { user } = useAuth();
-
-  return user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+  const { error } = useError();
+  return (
+    <>
+      {error ? <ErrorMessage message={error} /> : null}
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </>
+  );
 };
 
 export default Root;
