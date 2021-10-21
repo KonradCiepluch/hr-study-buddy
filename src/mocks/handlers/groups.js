@@ -15,15 +15,23 @@ export const groups = [
           },
         },
       });
+      if (filteredStudents.length) {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            students: filteredStudents,
+          })
+        );
+      }
       return res(
-        ctx.status(200),
+        ctx.status(403),
         ctx.json({
-          students: filteredStudents,
+          error: `There are not student's of this group`,
         })
       );
     }
     return res(
-      ctx.status(200),
+      ctx.status(403),
       ctx.json({
         error: 'Please provide the group ID',
       })

@@ -13,16 +13,16 @@ const StudentsList = ({ handleOpenStudentDetails }) => {
   useEffect(() => {
     (async () => {
       const students = await getStudentsByGroup(id);
-      setStudents(students);
+      if (students) setStudents(students);
     })();
   }, [getStudentsByGroup, id]);
   return (
     <>
       <Title>{'Students list:'}</Title>
       <StyledList>
-        {students.map((student) => (
-          <StudentListItem key={student.name} student={student} onClick={() => handleOpenStudentDetails(student.id)} />
-        ))}
+        {students
+          ? students.map((student) => <StudentListItem key={student.name} student={student} onClick={() => handleOpenStudentDetails(student.id)} />)
+          : null}
       </StyledList>
     </>
   );

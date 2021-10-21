@@ -9,7 +9,7 @@ const theme = {
     mediumGrey: '#DFE2E8',
     black: '#111111',
     success: '#8FCB81',
-    error: '#CB8581',
+    error: '#ff8383',
     warning: '#E1D888',
   },
   fontSize: {
