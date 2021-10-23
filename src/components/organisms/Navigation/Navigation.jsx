@@ -10,6 +10,7 @@ const Navigation = ({ isLong }) => {
       <LinksWrapper>
         <StyledLink to="/group">Dashboard</StyledLink>
         <StyledLink to="/add-user">Add user</StyledLink>
+        <StyledLink to="/notes">Notes</StyledLink>
         <StyledLink as="a" onClick={signOut}>
           Logout
         </StyledLink>
