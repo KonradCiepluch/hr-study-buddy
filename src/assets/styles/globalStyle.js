@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Montserrat', sans-serif;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 
     a, button {
