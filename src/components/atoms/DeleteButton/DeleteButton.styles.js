@@ -10,6 +10,7 @@ const StyledButton = styled.button`
   border: none;
   background-color: ${({ theme }) => theme.colors.grey};
   color: white;
+  cursor: pointer;
 
   svg {
     transform: translateX(0.5px);

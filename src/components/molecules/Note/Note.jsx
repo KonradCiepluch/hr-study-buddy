@@ -1,33 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { NoteWrapper, StyledDeleteButton } from './Note.styles';
 import { Title } from 'components/atoms/Title/Title.styles';
-import styled from 'styled-components';
-import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
-import { removeNote } from 'components/store';
-
-const NoteWrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-
-  h3,
-  p {
-    margin: 0;
-    color: ${({ theme }) => theme.colors.darkGrey};
-  }
-`;
-
-const StyledDeleteButton = styled(DeleteButton)`
-  position: absolute;
-  top: 20px;
-  left: -40px;
-`;
+import { useRemoveNoteMutation } from 'components/store';
 
 const Note = ({ id, title, content = 'No content' }) => {
-  const dispatch = useDispatch();
+  const [removeNote] = useRemoveNoteMutation();
 
-  const handleRemoveNote = () => dispatch(removeNote({ id }));
+  const handleRemoveNote = () => removeNote({ id });
 
   return (
     <NoteWrapper>

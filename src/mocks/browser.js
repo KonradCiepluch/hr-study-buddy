@@ -13,6 +13,9 @@ const createRecords = () => {
   groups.forEach((group) => db.group.create({ name: group }));
 
   db.teacher.create();
+
+  db.note.create();
+  db.note.create();
 };
 
 createRecords();
