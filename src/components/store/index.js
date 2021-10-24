@@ -1,38 +1,64 @@
-import { createStore } from 'redux';
-import { v4 as uuid } from 'uuid';
+import { configureStore } from '@reduxjs/toolkit';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// należy pamiętać żeby generować unikalne id na etapię tworzenia notatki, a nie przy mapowaniu gdyż przy każdym renderze ta wartośc byłaby inna
+// należy pamiętać żeby generować unikalne id na etapię tworzenia notatki, a nie przy mapowaniu gdyż przy każdym renderze ta wartość byłaby inna
 
-export const addNote = (payload) => {
-  return {
-    type: 'ADD_NOTE',
-    payload: {
-      id: uuid(),
-      ...payload,
+const notesApi = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: '/',
+  }),
+  tagTypes: ['Notes'],
+  endpoints: (builder) => ({
+    getNotes: builder.query({
+      query: () => 'notes',
+      providesTags: ['Notes'],
+    }),
+    addNote: builder.mutation({
+      query: (body) => ({
+        url: 'notes',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Notes'],
+    }),
+    removeNote: builder.mutation({
+      query: (body) => ({
+        url: 'notes',
+        method: 'DELETE',
+        body,
+      }),
+      invalidatesTags: ['Notes'],
+    }),
+  }),
+});
+
+// use[MethodName][MethodType]
+export const { useGetNotesQuery, useAddNoteMutation, useRemoveNoteMutation } = notesApi;
+
+export const store = configureStore({
+  reducer: {
+    [notesApi.reducerPath]: notesApi.reducer,
+    // notes: notesSlice.reducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(notesApi.middleware),
+});
+
+/* const initialNotesState = [{ id: uuid(), title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet' }]; */
+
+/* const notesSlice = createSlice({
+  name: 'notes',
+  initialState: initialNotesState,
+  reducers: {
+    addNote(state, action) {
+      state.push({
+        id: uuid(),
+        ...action.payload,
+      });
     },
-  };
-};
+    removeNote(state, action) {
+      return state.filter((note) => note.id !== action.payload.id);
+    },
+  },
+});
 
-export const removeNote = (payload) => {
-  return {
-    type: 'REMOVE_NOTE',
-    payload,
-  };
-};
-
-const initialState = {
-  notes: [{ id: uuid(), title: 'Lorem ipsum', content: 'Lorem ipsum dolor sit amet' }],
-};
-
-const notesReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'ADD_NOTE':
-      return { ...state, notes: [...state.notes, action.payload] };
-    case 'REMOVE_NOTE':
-      return { ...state, notes: state.notes.filter((note) => note.id !== action.payload.id) };
-    default:
-      return state;
-  }
-};
-
-export const store = createStore(notesReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const { addNote, removeNote } = notesSlice.actions; */
