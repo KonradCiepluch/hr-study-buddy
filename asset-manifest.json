@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/hr-study-buddy/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/hr-study-buddy/static/js/main.f5bf2adf.chunk.js",
-    "main.js.map": "/hr-study-buddy/static/js/main.f5bf2adf.chunk.js.map",
+    "main.js": "/hr-study-buddy/static/js/main.cff83108.chunk.js",
+    "main.js.map": "/hr-study-buddy/static/js/main.cff83108.chunk.js.map",
     "runtime-main.js": "/hr-study-buddy/static/js/runtime-main.3e283556.js",
     "runtime-main.js.map": "/hr-study-buddy/static/js/runtime-main.3e283556.js.map",
     "static/js/2.282fa56c.chunk.js": "/hr-study-buddy/static/js/2.282fa56c.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.3e283556.js",
     "static/js/2.282fa56c.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.f5bf2adf.chunk.js"
+    "static/js/main.cff83108.chunk.js"
   ]
 }
