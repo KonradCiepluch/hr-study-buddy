@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/hr-study-buddy/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/hr-study-buddy/static/js/main.7387ac23.chunk.js",
+    "main.js.map": "/hr-study-buddy/static/js/main.7387ac23.chunk.js.map",
+    "runtime-main.js": "/hr-study-buddy/static/js/runtime-main.3e283556.js",
+    "runtime-main.js.map": "/hr-study-buddy/static/js/runtime-main.3e283556.js.map",
+    "static/js/2.282fa56c.chunk.js": "/hr-study-buddy/static/js/2.282fa56c.chunk.js",
+    "static/js/2.282fa56c.chunk.js.map": "/hr-study-buddy/static/js/2.282fa56c.chunk.js.map",
+    "index.html": "/hr-study-buddy/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/hr-study-buddy/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.282fa56c.chunk.js.LICENSE.txt": "/hr-study-buddy/static/js/2.282fa56c.chunk.js.LICENSE.txt",
+    "static/media/arrow.e83ec2e7.svg": "/hr-study-buddy/static/media/arrow.e83ec2e7.svg",
+    "static/media/delete-icon.11e2a38d.svg": "/hr-study-buddy/static/media/delete-icon.11e2a38d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3e283556.js",
+    "static/js/2.282fa56c.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.7387ac23.chunk.js"
+  ]
+}
