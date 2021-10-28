@@ -5,14 +5,14 @@ export const groupsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: '/',
   }),
-  tagTypes: ['Groups'],
+  tagTypes: ['Groups', 'Students'],
   endpoints: (builder) => ({
     getGroups: builder.query({
       query: () => 'groups',
     }),
     getStudentsByGroup: builder.query({
       query: (id) => `groups/${id}`,
-      providesTags: ['Groups'],
+      providesTags: ['Groups', 'Students'],
     }),
     removeStudentFromGroup: builder.mutation({
       query: (body) => ({

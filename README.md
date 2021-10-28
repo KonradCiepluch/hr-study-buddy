@@ -1,3 +1,35 @@
+# About Study buddy app
+
+This app uses mock service worker for data fetching and datocms.
+
+Login data:
+
+login: teacher@studybuddy.com
+password: 1234
+
+Use cases:
+
+- signing in to app is just a 'facade'
+- searching students in serachbar, clicking in a student or pressing an enter key opens modal with details, you can navigate by using keyboard
+- change a group in Dashboard, removing student from group and opening details by clicking in student
+- adding new student to a group in Add student
+- notebook in Notes view, adding and removing note also in NotesWidget
+
+# Built With
+
+    - React
+    - React-Router
+    - StyledComponents
+    - Downshift
+    - Mock service worker
+    - Msw data / faker
+    - Redux toolkit query
+    - React-modal
+
+# Live
+
+https://konradciepluch.github.io/hr-study-buddy/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

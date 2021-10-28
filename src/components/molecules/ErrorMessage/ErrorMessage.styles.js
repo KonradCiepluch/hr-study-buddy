@@ -19,7 +19,7 @@ const slide = keyframes`
 `;
 
 export const ErrorWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   left: 50%;
   bottom: 65px;
   width: 465px;
