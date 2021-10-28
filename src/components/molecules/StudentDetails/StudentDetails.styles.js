@@ -39,4 +39,8 @@ export const Subject = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.colors.darkGrey};
   font-size: 15px;
+
+  @media (max-width: 1240px) {
+    width: 75%;
+  }
 `;

@@ -11,7 +11,7 @@ import { store } from 'components/store';
 const AppProviders = ({ children }) => {
   return (
     <Provider store={store}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <ThemeProvider theme={theme}>
           <ErrorProvider>
             <AuthProvider>

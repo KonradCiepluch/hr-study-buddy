@@ -1,28 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Redirect } from 'react-router';
 import { useParams } from 'react-router';
-import { StyledList } from './StudentsList.styles';
+import { StyledList, StudentsInfo } from './StudentsList.styles';
 import { Title } from 'components/atoms/Title/Title.styles';
 import StudentListItem from 'components/molecules/StudentListItem/StudentListItem';
-import useStudents from 'hooks/useStudents';
+import { useGetStudentsByGroupQuery } from 'components/store';
 
 const StudentsList = ({ handleOpenStudentDetails }) => {
-  const [students, setStudents] = useState([]);
   const { id } = useParams();
-  const { getStudentsByGroup } = useStudents();
 
-  useEffect(() => {
-    (async () => {
-      const students = await getStudentsByGroup(id);
-      if (students) setStudents(students);
-    })();
-  }, [getStudentsByGroup, id]);
+  const { data, isLoading } = useGetStudentsByGroupQuery(id);
+
+  if (isLoading) return <Title>Loading students...</Title>;
+
+  if (!data) return <Redirect to="/group/A" />;
+
   return (
     <>
-      <Title>{'Students list:'}</Title>
+      <Title>Students list:</Title>
       <StyledList>
-        {students
-          ? students.map((student) => <StudentListItem key={student.name} student={student} onClick={() => handleOpenStudentDetails(student.id)} />)
-          : null}
+        {data ? (
+          data.students.length ? (
+            data.students.map((student) => (
+              <StudentListItem key={student.name} student={student} onClick={() => handleOpenStudentDetails(student.id)} />
+            ))
+          ) : (
+            <StudentsInfo>There aren't present students</StudentsInfo>
+          )
+        ) : null}
       </StyledList>
     </>
   );

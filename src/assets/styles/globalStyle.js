@@ -10,6 +10,11 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family: 'Montserrat', sans-serif;
         overflow: hidden;
+
+        @media (max-width: 1240px) {
+            overflow-y: unset;
+            overflow-x: hidden;
+        }
     }
 
     a, button {

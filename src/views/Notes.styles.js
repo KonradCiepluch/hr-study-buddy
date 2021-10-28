@@ -9,6 +9,13 @@ export const Wrapper = styled.div`
   align-content: start;
   grid-gap: 30px;
   padding: 30px;
+
+  @media (max-width: 1240px) {
+    padding: 15px;
+    grid-template-rows: 0.5fr 1.3fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 `;
 
 export const FormWrapper = styled.form`
@@ -20,6 +27,11 @@ export const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
+  @media (max-width: 1240px) {
+    align-items: center;
+    width: 80%;
+  }
 `;
 
 export const StyledFormField = styled(FormField)`
@@ -31,4 +43,8 @@ export const NotesWrapper = styled.div`
   padding: 20px 60px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1240px) {
+    padding: 20px 40px;
+  }
 `;

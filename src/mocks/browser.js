@@ -15,7 +15,6 @@ const createRecords = () => {
   db.teacher.create();
 
   db.note.create();
-  db.note.create();
 };
 
 createRecords();

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Input from 'components/atoms/Input/Input.styles';
 import Label from 'components/atoms/Label/Label.styles';
+import Select from 'components/atoms/Select/Select.styles';
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +16,20 @@ const Wrapper = styled.div`
   }
 `;
 
-const FormField = React.forwardRef(({ onChange, value, label, name, id, type = 'text', checked, isTextArea, ...props }, ref) => {
+const FormField = React.forwardRef(({ select, onChange, value, label, name, id, type = 'text', checked, isTextArea, ...props }, ref) => {
+  if (select)
+    return (
+      <Wrapper>
+        <Label htmlFor={id}>{label}</Label>
+        <Select name={name} id={id} onChange={onChange} value={value} ref={ref} {...props}>
+          <option value=""></option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </Select>
+      </Wrapper>
+    );
+
   return (
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
@@ -39,14 +53,22 @@ const FormField = React.forwardRef(({ onChange, value, label, name, id, type = '
   );
 });
 
+FormField.defaultProps = {
+  select: false,
+  type: 'text',
+  isTextArea: false,
+};
+
 FormField.propTypes = {
+  select: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
-  // value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
   checked: PropTypes.bool,
+  isTextArea: PropTypes.bool,
 };
 
 export default FormField;

@@ -10,6 +10,10 @@ export const SearchBarWrapper = styled.div`
   align-items: center;
   padding: 0 40px;
 
+  @media (max-width: 1240px) {
+    flex-direction: column;
+  }
+
   ${Input} {
     font-size: ${({ theme }) => theme.fontSize.l};
     width: 100%;
@@ -23,6 +27,12 @@ export const StatusInfo = styled.div`
   color: ${({ theme }) => theme.colors.darkGrey};
   font-size: ${({ theme }) => theme.fontSize.l};
   margin-right: 40px;
+
+  @media (max-width: 1240px) {
+    display: flex;
+    margin-top: 5px;
+    margin-right: 0;
+  }
 
   p {
     margin: 5px;

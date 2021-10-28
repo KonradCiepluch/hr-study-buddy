@@ -24,9 +24,10 @@ export const groups = [
         );
       }
       return res(
-        ctx.status(403),
+        ctx.status(200),
         ctx.json({
-          error: `There are not student's of this group`,
+          Status: `There aren't students of this group`,
+          students: filteredStudents,
         })
       );
     }
@@ -36,5 +37,16 @@ export const groups = [
         error: 'Please provide the group ID',
       })
     );
+  }),
+  rest.delete('/groups/delete', (req, res, ctx) => {
+    const deletedStudent = db.student.delete({
+      where: {
+        id: {
+          equals: req.body.id,
+        },
+      },
+    });
+
+    return res(ctx.status(202), ctx.json({ status: 'Student has been deleted', deletedStudent }));
   }),
 ];

@@ -10,4 +10,11 @@ export const Wrapper = styled.div`
   grid-template-columns: 150px 0.75fr 0.75fr;
   background-color: ${({ theme }) => theme.colors.lightGrey};
   overflow-y: hidden;
+
+  @media (max-width: 1240px) {
+    height: auto;
+    grid-template-rows: 90px 1fr 1fr;
+    grid-template-columns: 150px 1fr;
+    overflow-y: unset;
+  }
 `;

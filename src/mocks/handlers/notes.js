@@ -8,7 +8,6 @@ export const notes = [
   }),
   rest.post('/notes', (req, res, ctx) => {
     if (req.body.title && req.body.content) {
-      console.log(req.body);
       const newNote = {
         id: faker.datatype.uuid(),
         title: req.body.title,

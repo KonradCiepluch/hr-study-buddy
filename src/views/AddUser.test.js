@@ -1,12 +1,12 @@
 import React from 'react';
-import AddUser from './AddUser';
+import AddStudent from './AddUser';
 import Dashboard from './Dashboard';
 import '@testing-library/jest-dom';
 import { screen, fireEvent } from 'test-utils';
 import { render } from 'test-utils';
 
 describe('Form Field', () => {
-  it('Adds new user to the list', () => {
+  it('Adds new student to the list', () => {
     /* renderWithProviders(
       <>
         <AddUser />
@@ -21,7 +21,7 @@ describe('Form Field', () => {
     screen.getByText('Grażyna'); */
   });
 
-  it('Prevents adding new user if the consent is not checked', () => {
+  it('Prevents adding new student if the consent is not checked', () => {
     /*     renderWithProviders(
       <>
         <AddUser />

@@ -24,6 +24,10 @@ export const NavButton = styled(Button)`
     margin-left: 3px;
     margin-bottom: -0.5px;
     transition: transform 0.2s;
+
+    @media (max-width: 1240px) {
+      transform: rotate(90deg);
+    }
   }
 
   &:hover svg {
@@ -48,6 +52,12 @@ export const Navigation = styled.nav`
   transform: translate(-50%, -10px);
   visibility: hidden;
   transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+
+  @media (max-width: 1240px) {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    visibility: visible;
+  }
 
   a {
     color: ${({ theme }) => theme.colors.darkGrey};
