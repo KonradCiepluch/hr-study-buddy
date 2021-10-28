@@ -11,6 +11,14 @@ export const Wrapper = styled.div`
   align-items: flex-start;
   padding: 50px;
   overflow-y: scroll;
+
+  @media (max-width: 1240px) {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+    overflow-y: unset;
+    border-left: none;
+    border-top: 1px solid ${({ theme }) => theme.colors.mediumGrey};
+  }
 `;
 
 export const NewsSectionHeader = styled.h2`

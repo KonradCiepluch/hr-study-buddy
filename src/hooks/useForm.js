@@ -4,7 +4,17 @@ const actionTypes = {
   inputChange: 'INPUT CHANGE',
   clearValues: 'CLEAR VALUES',
   toggleConsent: 'TOGGLE CONSENT',
+  resetErrors: 'RESET ERRORS',
   throwError: 'THROW ERROR',
+};
+
+const initialFormState = {
+  name: '',
+  attendance: '',
+  average: '',
+  group: '-',
+  consent: false,
+  errors: { name: '', attendance: '', average: '', group: '', consent: '' },
 };
 
 const reducer = (state, action) => {
@@ -16,13 +26,15 @@ const reducer = (state, action) => {
     case actionTypes.toggleConsent:
       return { ...state, consent: !state.consent };
     case actionTypes.throwError:
-      return { ...state, error: action.errorValue };
+      return { ...state, errors: { ...state.errors, [action.name]: action.errorValue } };
+    case actionTypes.resetErrors:
+      return { ...state, errors: { ...state.errors, [action.name]: action.initialValues.errors[action.name] } };
     default:
       return state;
   }
 };
 
-const useForm = (initialValues) => {
+const useForm = (initialValues = initialFormState) => {
   const [formValues, dispatch] = useReducer(reducer, initialValues);
 
   const handleInputChange = (e) => {
@@ -31,17 +43,21 @@ const useForm = (initialValues) => {
   const handleClearForm = () => {
     dispatch({ type: actionTypes.clearValues, initialValues });
   };
-  const handleThrowError = (errorMessage) => {
-    dispatch({ type: actionTypes.throwError, errorValue: errorMessage });
+  const handleThrowError = (name, errorMessage) => {
+    dispatch({ type: actionTypes.throwError, name, errorValue: errorMessage });
   };
   const handleToggleConsent = () => {
     dispatch({ type: actionTypes.toggleConsent });
+  };
+  const handleResetErrors = (name) => {
+    dispatch({ type: actionTypes.resetErrors, name });
   };
   return {
     handleInputChange,
     handleClearForm,
     handleThrowError,
     handleToggleConsent,
+    handleResetErrors,
     formValues,
   };
 };

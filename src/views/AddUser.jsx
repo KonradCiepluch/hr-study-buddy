@@ -1,37 +1,49 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 import { Title } from 'components/atoms/Title/Title.styles';
 import FormField from 'components/molecules/FormField/FormField';
 import Button from 'components/atoms/Button/Button';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.styles';
-import { UsersContext } from 'providers/UsersProvider';
-import useForm from 'hooks/useForm';
+import { useForm } from 'react-hook-form';
+import { useAddNewStudentMutation } from 'components/store';
 
-const initialFormState = { name: '', attendance: '', average: '', consent: false, error: '' };
+const Error = styled.p`
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.error};
+  margin-top: 5px;
+`;
 
-const AddUser = () => {
-  const { handleAddUser } = useContext(UsersContext);
+const AddStudent = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-  const { handleInputChange, handleClearForm, handleThrowError, handleToggleConsent, formValues } = useForm(initialFormState);
+  const [addStudent] = useAddNewStudentMutation();
 
-  const handleSubmitUser = (e) => {
-    e.preventDefault();
-    const { name, attendance, average, consent } = formValues;
-    if (name && attendance && average && consent) {
-      handleAddUser({ name, attendance, average });
-      handleClearForm();
-    } else handleThrowError('You must give a consent');
+  const handleSubmitUser = (data) => {
+    addStudent(data);
+    reset();
   };
+
   return (
-    <ViewWrapper as="form" onSubmit={handleSubmitUser}>
+    <ViewWrapper as="form" onSubmit={handleSubmit(handleSubmitUser)}>
       <Title>Add new user</Title>
-      <FormField label="Name" id="name" name="name" value={formValues.name} onChange={handleInputChange} />
-      <FormField label="Attendance" id="attendance" name="attendance" value={formValues.attendance} onChange={handleInputChange} />
-      <FormField label="Average" id="average" name="average" value={formValues.average} onChange={handleInputChange} />
-      <FormField label="Consent" type="checkbox" id="consent" name="consent" checked={formValues.consent} onChange={handleToggleConsent} />
+      <FormField label="Name" id="name" name="name" {...register('name', { required: true, minLength: 6 })} />
+      {errors.name && <Error>Name is required and should contain at least 6 characters</Error>}
+      <FormField label="Attendance" id="attendance" name="attendance" {...register('attendance', { required: true })} />
+      {errors.attendance && <Error>Attendance is required</Error>}
+      <FormField label="Average" id="average" name="average" type="number" step=".1" {...register('average', { required: true, min: 1, max: 5 })} />
+      {errors.average && <Error>Average is required and its value should be in the range from 1 to 5</Error>}
+      <FormField select label="Group" name="group" id="group" {...register('group', { required: true })} />
+      {errors.group && <Error>Group is required</Error>}
+      <FormField label="Consent" type="checkbox" id="consent" name="consent" {...register('consent', { required: true })} />
+      {errors.consent && <Error>You must give a consent</Error>}
       <Button type="submit">Add</Button>
-      {formValues.error && <p>{formValues.error} </p>}
     </ViewWrapper>
   );
 };
 
-export default AddUser;
+export default AddStudent;

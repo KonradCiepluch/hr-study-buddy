@@ -9,7 +9,7 @@ const Navigation = ({ isLong }) => {
       <NavTitle>Study Buddy</NavTitle>
       <LinksWrapper>
         <StyledLink to="/group">Dashboard</StyledLink>
-        <StyledLink to="/add-user">Add user</StyledLink>
+        <StyledLink to="/add-student">Add student</StyledLink>
         <StyledLink to="/notes">Notes</StyledLink>
         <StyledLink as="a" onClick={signOut}>
           Logout
