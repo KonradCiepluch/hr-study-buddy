@@ -1,6 +1,5 @@
 import { rest } from 'msw';
 import { db } from 'mocks/db';
-import faker from 'faker';
 
 export const students = [
   rest.get('/students/:id', (req, res, ctx) => {
@@ -37,16 +36,5 @@ export const students = [
     const matchingStudents = searchPhrase ? db.student.findMany({ where: { name: { contains: searchPhrase } } }) : [];
 
     return res(ctx.status(200), ctx.json({ matchingStudents }));
-  }),
-  rest.post('/students', (req, res, ctx) => {
-    const newStudent = {
-      id: faker.datatype.uuid(),
-      ...req.body,
-      average: Number(req.body.average),
-    };
-
-    db.student.create(newStudent);
-
-    return res(ctx.status(201), ctx.json({ student: newStudent }));
   }),
 ];

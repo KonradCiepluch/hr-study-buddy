@@ -5,7 +5,7 @@ import FormField from 'components/molecules/FormField/FormField';
 import Button from 'components/atoms/Button/Button';
 import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper.styles';
 import { useForm } from 'react-hook-form';
-import { useAddNewStudentMutation } from 'components/store';
+import { useAddNewStudentToGroupMutation } from 'components/store';
 
 const Error = styled.p`
   font-size: 13px;
@@ -21,7 +21,7 @@ const AddStudent = () => {
     reset,
   } = useForm();
 
-  const [addStudent] = useAddNewStudentMutation();
+  const [addStudent] = useAddNewStudentToGroupMutation();
 
   const handleSubmitUser = (data) => {
     addStudent(data);

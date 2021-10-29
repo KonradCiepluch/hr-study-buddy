@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import { db } from 'mocks/db';
+import faker from 'faker';
 
 export const groups = [
   rest.get('/groups', (req, res, ctx) => {
@@ -48,5 +49,16 @@ export const groups = [
     });
 
     return res(ctx.status(202), ctx.json({ status: 'Student has been deleted', deletedStudent }));
+  }),
+  rest.post('/groups/add', (req, res, ctx) => {
+    const newStudent = {
+      id: faker.datatype.uuid(),
+      ...req.body,
+      average: Number(req.body.average),
+    };
+
+    db.student.create(newStudent);
+
+    return res(ctx.status(201), ctx.json({ student: newStudent }));
   }),
 ];

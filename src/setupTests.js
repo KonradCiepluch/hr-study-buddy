@@ -18,7 +18,6 @@ beforeAll(() => {
 
   db.teacher.create();
 
-  // oraz przy użyciu pętli 15 studentów i wydarzeń
   for (let i = 0; i < 15; i++) {
     db.student.create();
     db.event.create();

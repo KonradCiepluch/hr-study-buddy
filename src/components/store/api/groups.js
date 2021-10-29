@@ -5,14 +5,14 @@ export const groupsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: '/',
   }),
-  tagTypes: ['Groups', 'Students'],
+  tagTypes: ['Groups'],
   endpoints: (builder) => ({
     getGroups: builder.query({
       query: () => 'groups',
     }),
     getStudentsByGroup: builder.query({
       query: (id) => `groups/${id}`,
-      providesTags: ['Groups', 'Students'],
+      providesTags: ['Groups'],
     }),
     removeStudentFromGroup: builder.mutation({
       query: (body) => ({
@@ -22,7 +22,15 @@ export const groupsApi = createApi({
       }),
       invalidatesTags: ['Groups'],
     }),
+    addNewStudentToGroup: builder.mutation({
+      query: (body) => ({
+        url: 'groups/add',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Groups'],
+    }),
   }),
 });
 
-export const { useGetGroupsQuery, useGetStudentsByGroupQuery, useRemoveStudentFromGroupMutation } = groupsApi;
+export const { useGetGroupsQuery, useGetStudentsByGroupQuery, useRemoveStudentFromGroupMutation, useAddNewStudentToGroupMutation } = groupsApi;

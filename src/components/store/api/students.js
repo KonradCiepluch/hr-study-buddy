@@ -5,7 +5,6 @@ export const studentsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: '/',
   }),
-  tagTypes: ['Students'],
   endpoints: (builder) => ({
     getStudentById: builder.query({
       query: (id) => `students/${id}`,
@@ -17,15 +16,7 @@ export const studentsApi = createApi({
         body,
       }),
     }),
-    addNewStudent: builder.mutation({
-      query: (body) => ({
-        url: 'students',
-        method: 'POST',
-        body,
-      }),
-      invalidatesTags: ['Students'],
-    }),
   }),
 });
 
-export const { useGetStudentByIdQuery, useFindStudentsMutation, useAddNewStudentMutation } = studentsApi;
+export const { useGetStudentByIdQuery, useFindStudentsMutation } = studentsApi;
